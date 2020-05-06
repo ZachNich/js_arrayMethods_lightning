@@ -113,76 +113,79 @@ const businesses = [
 
 const output = document.querySelector(".output")
 const outputTwo = document.querySelector('.outputTwo')
-output.innerHTML = "<h1>Active Businesses</h1>"
+// output.innerHTML = "<h1>Active Businesses</h1>"
 
-businesses.forEach(business => {
-  output.innerHTML += `
-    <h2>${business.companyName}</h2>
-    <section>
-      ${business.addressFullStreet}
-    </section>
-    <section>${business.addressStateCode}, ${business.addressZipCode}</section>
-  `
-  output.innerHTML += "<hr/>"
-})
+// businesses.forEach(business => {
+//   output.innerHTML += `
+//     <h2>${business.companyName}</h2>
+//     <section>
+//       ${business.addressFullStreet}
+//     </section>
+//     <section>${business.addressStateCode}, ${business.addressZipCode}</section>
+//   `
+//   output.innerHTML += "<hr/>"
+// })
 
-const newYorkArray = businesses.filter(e => e.addressStateCode === 'NY')
-const manufacturingArray = businesses.filter(e => e.companyIndustry === 'Manufacturing')
+// const newYorkArray = businesses.filter(e => e.addressStateCode === 'NY')
+// const manufacturingArray = businesses.filter(e => e.companyIndustry === 'Manufacturing')
 
-newYorkArray.forEach(e => {
-    outputTwo.innerHTML +=
-    `<h2>${e.companyName}</h2>
-        <section>
-            ${e.addressFullStreet}
-        </section>
-        <section>${e.addressStateCode}, ${e.addressZipCode}</section>`
-})
+// newYorkArray.forEach(e => {
+//     outputTwo.innerHTML +=
+//     `<h2>${e.companyName}</h2>
+//         <section>
+//             ${e.addressFullStreet}
+//         </section>
+//         <section>${e.addressStateCode}, ${e.addressZipCode}</section>`
+// })
 
-manufacturingArray.forEach(e => {
-    outputTwo.innerHTML +=
-    `<h2>${e.companyName}</h2>
-        <section>
-            ${e.addressFullStreet}
-        </section>
-        <section>${e.addressStateCode}, ${e.addressZipCode}</section>`
-})
+// manufacturingArray.forEach(e => {
+//     outputTwo.innerHTML +=
+//     `<h2>${e.companyName}</h2>
+//         <section>
+//             ${e.addressFullStreet}
+//         </section>
+//         <section>${e.addressStateCode}, ${e.addressZipCode}</section>`
+// })
 
-const agents = businesses.map(e => ({
-    'fullName': `${e.purchasingAgent.nameFirst} ${e.purchasingAgent.nameLast}`,
-    'company': `${e.companyName}`,
-    'phoneNumber': `${e.phoneWork}`
-}))
+// const agents = businesses.map(e => ({
+//     'fullName': `${e.purchasingAgent.nameFirst} ${e.purchasingAgent.nameLast}`,
+//     'company': `${e.companyName}`,
+//     'phoneNumber': `${e.phoneWork}`
+// }))
 
-agents.forEach(agent => {
-    outputTwo.innerHTML += `
-        <h2>${agent.fullName}</h2>
-        <section>${agent.company}</section>
-        <section>${agent.phoneNumber}</section>
-        `
-})
+// agents.forEach(agent => {
+//     outputTwo.innerHTML += `
+//         <h2>${agent.fullName}</h2>
+//         <section>${agent.company}</section>
+//         <section>${agent.phoneNumber}</section>
+//         `
+// })
 
-document
-    .querySelector("#companySearch")
-    .addEventListener("keypress", keyPressEvent => {
-        if (keyPressEvent.charCode === 13) {
-            /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-            const foundBusiness = businesses.find(
-                business =>
-                    business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || business.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
-            );
+// document
+//     .querySelector("#companySearch")
+//     .addEventListener("keypress", keyPressEvent => {
+//         if (keyPressEvent.charCode === 13) {
+//             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+//             const foundBusiness = businesses.find(
+//                 business =>
+//                     business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || business.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
+//             );
 
-            output.innerHTML = `
-                <h2>
-                ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
-                </h2>
-            `;
-        }
-    });
+//             output.innerHTML = `
+//                 <h2>
+//                 ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
+//                 </h2>
+//             `;
+//         }
+//     });
 
-const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
-const totalRainfall = monthlyRainfall.reduce((total, next) => total += next, 0)
-console.log(totalRainfall)
+// const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
+// const totalRainfall = monthlyRainfall.reduce((total, next) => total += next, 0)
+// console.log(totalRainfall)
 
-const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
-const sentence = words.reduce((total, next) => total += `${next} `, '')
-console.log(sentence)
+// const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
+// const sentence = words.reduce((total, next) => total += `${next} `, '')
+// console.log(sentence)
+
+const bigSpenders = businesses.filter(e => e.orders.some(f => f > 9000))
+console.log(bigSpenders)
